@@ -11,4 +11,4 @@ class User(BaseModel):
     video: str
     email:str
     created_at: date
-    uodated_at: Optional[date]
+    updated_at: Optional[date]
