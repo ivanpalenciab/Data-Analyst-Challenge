@@ -10,7 +10,7 @@ challenge = APIRouter()
 @challenge.post("/challenge_migration/")
 async def challenge_migration(file:UploadFile = File(...)):
     """
-    This endpoint receives a file that must be in CSV format to migrate user table data to the database.
+    This endpoint receives a file that must be in CSV format to migrate challenge table data to the database.
     For the process to be successful, the file must have the following columns:
     id (Integer), 
     name(String),  

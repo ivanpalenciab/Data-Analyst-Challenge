@@ -6,7 +6,10 @@ from models.profile import profiles
 
 
 profile = APIRouter()
-"""
+
+@profile.post("/profile_migration/")
+async def profile_migration(file:UploadFile = File(...)):
+    """
     This endpoint receives a file that must be in CSV format to migrate profile table data to the database.
     For the process to be successful, the file must have the following columns:
     id (Integer), 
@@ -16,8 +19,6 @@ profile = APIRouter()
     updated_at(Date)
     views(String).
     """
-@profile.post("/profile_migration/")
-async def profile_migration(file:UploadFile = File(...)):
     if file.content_type not in ["text/csv"]:
         return {"error": "The file should be CSV."}
     try:
