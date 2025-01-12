@@ -9,6 +9,16 @@ challenge = APIRouter()
 
 @challenge.post("/challenge_migration/")
 async def challenge_migration(file:UploadFile = File(...)):
+    """
+    This endpoint receives a file that must be in CSV format to migrate user table data to the database.
+    For the process to be successful, the file must have the following columns:
+    id (Integer), 
+    name(String),  
+    description(String), 
+    status(String), 
+    opencall_objective(String), 
+    created_at(Date) 
+    """
     if file.content_type not in ["text/csv"]:
         return {"error": "The file should be CSV."}
     try:

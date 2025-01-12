@@ -9,6 +9,17 @@ resume = APIRouter()
 
 @resume.post("/resume_migration/")
 async def resume_migration(file:UploadFile = File(...)):
+    """
+    This endpoint receives a file that must be in CSV format to migrate resume table data to the database.
+    For the process to be successful, the file must have the following columns:
+    id (Integer), 
+    user_id (Integer), 
+    name(String), 
+    type(String), 
+    video(String), 
+    views(String), 
+    created_at(Date).
+    """
     if file.content_type not in ["text/csv"]:
         return {"error": "The file should be CSV."}
     try:
